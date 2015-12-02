@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root to: "genres#index"
+
   # Routes for the Classification resource:
   # CREATE
   get "/classifications/new", :controller => "classifications", :action => "new"
@@ -103,7 +105,7 @@ Rails.application.routes.draw do
   #------------------------------
 
   devise_for :users
- root to: "genres#index"
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

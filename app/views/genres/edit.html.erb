@@ -18,13 +18,13 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for type -->
+      <!-- Label and input for title -->
       <div class="form-group">
-        <label for="type" class="control-label">
-          Type
+        <label for="title" class="control-label">
+          Title
         </label>
 
-        <input type="text" id="type" name="type" placeholder="Type" class="form-control" value="<%= @genre.type %>">
+        <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="<%= @genre.title %>">
       </div>
 
       <button class="btn btn-warning">

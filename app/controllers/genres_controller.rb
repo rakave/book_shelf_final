@@ -13,7 +13,7 @@ class GenresController < ApplicationController
 
   def create
     @genre = Genre.new
-    @genre.type = params[:type]
+    @genre.title = params[:title]
 
     if @genre.save
       redirect_to "/genres", :notice => "Genre created successfully."
@@ -29,7 +29,7 @@ class GenresController < ApplicationController
   def update
     @genre = Genre.find(params[:id])
 
-    @genre.type = params[:type]
+    @genre.title = params[:title]
 
     if @genre.save
       redirect_to "/genres", :notice => "Genre updated successfully."
