@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @classification.errors.any? %>
+  <% @classification.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Classification</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_classification" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for genre_id -->
+      <div class="form-group">
+        <label for="genre_id" class="control-label">
+          Genre
+        </label>
+
+        <input type="text" id="genre_id" name="genre_id" placeholder="Genre" class="form-control" value="<%= @classification.genre_id %>">
+      </div>
+
+      <!-- Label and input for book_id -->
+      <div class="form-group">
+        <label for="book_id" class="control-label">
+          Book
+        </label>
+
+        <input type="text" id="book_id" name="book_id" placeholder="Book" class="form-control" value="<%= @classification.book_id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Classification
+      </button>
+      or
+      <a href="/classifications">Cancel</a>
+    </form>
+  </div>
+</div>
