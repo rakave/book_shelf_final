@@ -69,7 +69,7 @@
         <label for="image" class="control-label">
           Genre (hold "ctrl" to select multiple)
         </label>
-        <%= select_tag(:genre_id, options_from_collection_for_select(Genre.order(title: :asc), :id, :title, {:selected=>[@book.genres.ids]}), :class => "form-control", :multiple => true, :size =>10) =%>
+        <%= select_tag(:genre_id, options_from_collection_for_select(Genre.order(title: :asc), :id, :title, params[:genre_id]), :class => "form-control", :multiple => true, :size =>10) =%>
       </div>
       <a href="/genres/new">or add a new genre</a>
       <br>
