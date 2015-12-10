@@ -1,11 +1,11 @@
 <!-- Validation failure messages -->
 <% if @book.errors.any? %>
-  <% @book.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @book.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
 <div class="page-header">
@@ -18,13 +18,31 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
+      <!-- Label and input for title -->
+      <div class="form-group">
+        <label for="title" class="control-label">
+          Title
+        </label>
+
+        <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="<%= @book.title %>">
+      </div>
+
+      <!-- Label and input for image -->
+      <div class="form-group">
+        <label for="image" class="control-label">
+          Image
+        </label>
+
+        <input type="text" id="image" name="image" placeholder="Image" class="form-control" value="<%= @book.image %>">
+      </div>
+
       <!-- Label and input for author_id -->
       <div class="form-group">
         <label for="author_id" class="control-label">
           Author
         </label>
+        <%= select_tag(:author_id, options_from_collection_for_select(Author.order(name: :asc), :id, :name, @book.author_id), :class => "form-control") =%>
 
-        <input type="text" id="author_id" name="author_id" placeholder="Author" class="form-control" value="<%= @book.author_id %>">
       </div>
 
       <!-- Label and input for user_id -->
@@ -45,24 +63,17 @@
         <input type="text" id="blurb" name="blurb" placeholder="Blurb" class="form-control" value="<%= @book.blurb %>">
       </div>
 
-      <!-- Label and input for title -->
-      <div class="form-group">
-        <label for="title" class="control-label">
-          Title
-        </label>
 
-        <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="<%= @book.title %>">
-      </div>
-
-      <!-- Label and input for image -->
+      <!-- Select Tag for Genre ID -->
       <div class="form-group">
         <label for="image" class="control-label">
-          Image
+          Genre (hold "ctrl" to select multiple)
         </label>
-
-        <input type="text" id="image" name="image" placeholder="Image" class="form-control" value="<%= @book.image %>">
+        <%= select_tag(:genre_id, options_from_collection_for_select(Genre.order(title: :asc), :id, :title, {:selected=>[@book.genres.ids]}), :class => "form-control", :multiple => true, :size =>10) =%>
       </div>
-
+      <a href="/genres/new">or add a new genre</a>
+      <br>
+      <br>
       <button class="btn btn-success">
         Create Book
       </button>

@@ -18,8 +18,18 @@ class BooksController < ApplicationController
     @book.blurb = params[:blurb]
     @book.title = params[:title]
     @book.image = params[:image]
+    @book.save
 
-    if @book.save
+    @genreids = params[:genre_id].map { |x| x.to_i }
+
+    @genreids.each do |gid|
+      @classification = Classification.new
+      @classification.book_id = @book.id
+      @classification.genre_id = gid
+      @classification.save
+    end
+
+    if @book.save && @classification.save
       redirect_to "/books", :notice => "Book created successfully."
     else
       render 'new'
@@ -54,3 +64,6 @@ class BooksController < ApplicationController
     redirect_to "/books", :notice => "Book deleted."
   end
 end
+
+
+

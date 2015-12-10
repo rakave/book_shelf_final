@@ -3,3 +3,5 @@
 ## Final Project
 
 ### My Book Shelf
+
+<img src ="erd.jpg">

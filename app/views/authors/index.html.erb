@@ -13,7 +13,7 @@
         <th>Actions</th>
       </tr>
 
-      <% @authors.each do |author| %>
+      <% @authors.order(name: :asc).each do |author| %>
       <tr>
         <td><%= author.name %></td>
         <td>

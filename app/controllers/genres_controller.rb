@@ -18,7 +18,7 @@ class GenresController < ApplicationController
     if @genre.save
       redirect_to "/genres", :notice => "Genre created successfully."
     else
-      render 'new'
+      render :back
     end
   end
 

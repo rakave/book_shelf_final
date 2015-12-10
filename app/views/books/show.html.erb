@@ -1,15 +1,12 @@
 <div class="page-header">
-  <h3>Book #<%= @book.id %></h3>
+  <h3><%= @book.title %></h3>
 </div>
 
 <div class="row">
   <div class="col-md-12">
     <dl class="dl-horizontal">
       <dt>Author</dt>
-      <dd><%= @book.author_id %></dd>
-
-      <dt>User</dt>
-      <dd><%= @book.user_id %></dd>
+      <dd><%= @book.author.name %></dd>
 
       <dt>Blurb</dt>
       <dd><%= @book.blurb %></dd>
@@ -18,7 +15,14 @@
       <dd><%= @book.title %></dd>
 
       <dt>Image</dt>
-      <dd><%= @book.image %></dd>
+      <dd><img src="<%= @book.image %>" width = "150"></dd>
+
+      <dt>Genre</dt>
+      <dd><% @book.genres.each do |bgenre| %>
+          <ul>
+            <li><a href="/genres/<%= bgenre.id %>"><%= bgenre.title %></a></li>
+          </ul>
+          <% end %></dd>
 
     </dl>
 
