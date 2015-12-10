@@ -1,11 +1,11 @@
 <!-- Validation failure messages -->
 <% if @book.errors.any? %>
-  <% @book.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @book.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
 <div class="page-header">
@@ -53,6 +53,17 @@
 
         <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="<%= @book.title %>">
       </div>
+
+      <!-- Select Tag for Genre ID -->
+      <div class="form-group">
+        <label for="image" class="control-label">
+          Genre (hold "ctrl" to select multiple)
+        </label>
+        <%= select_tag(:genre_id, options_from_collection_for_select(Genre.order(title: :asc), :id, :title, @book.genres.ids), :class => "form-control", :multiple => true, :size =>10) =%>
+      </div>
+      <a href="/genres/new">or add a new genre</a>
+      <br>
+      <br>
 
       <!-- Label and input for image -->
       <div class="form-group">
