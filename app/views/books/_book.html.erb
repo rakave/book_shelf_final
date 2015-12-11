@@ -1,0 +1,110 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <b><a href="/books/<%= book.id %>"><%= book.title %></a></b>
+          <small>
+            written by
+          </small>
+          <a href = "/authors/<%= book.author.id %>"><%= book.author.name %></a>.
+                      <b>Genres :
+          <% book.genres.each do |bgenre| %>
+          <a href="/genres/<%= bgenre.id %>" style="text-decoration:none"><%= bgenre.title %>,</a>
+          <% end %>
+</b>
+        </h3>
+      </div>
+
+      <div class="panel-body">
+        <a href="/books/<%= book.id %>">
+          <img src="<%= book.image %>" class="img-responsive">
+        </a>
+
+        <p>
+          <% favorite = Favorite.find_by(:book_id => book.id, :user_id => current_user.id) %>
+          <% if favorite.present? %>
+          <a href="/delete_favorite/<%= favorite.id %>" class="btn btn-link">
+            <i class="fa fa-heart"></i>
+          </a>
+          <% if book.readers.any? %>
+          <%= book.readers.pluck(:username).to_sentence %>
+          <%= book.readers.many? ? "like" : "likes" %>
+          this
+          <% end %>
+          <% else %>
+          <form action="/create_favorite" method="post">
+            <!-- Hidden input for authenticity token to protect from forgery -->
+            <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+            <input type="hidden" name="book_id" value="<%= book.id %>">
+
+            <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+            <button class="btn btn-link">
+              <i class="fa fa-heart-o"></i>
+            </button>
+
+            <% if book.readers.any? %>
+            <%= book.readers.pluck(:username).to_sentence %>
+            <%= book.readers.many? ? "like" : "likes" %>
+            this
+            <% end %>
+          </form>
+          <% end %>
+        </p>
+
+        <ul class="media-list">
+
+          <% if book.blurb.present? %>
+          <li class="media">
+            <div class="page-header">
+              <h6 class="media-heading">
+                <%= link_to book.title.capitalize %> (Blurb)
+              </h6>
+              <%= book.blurb  %>
+            </div>
+          </li>
+          <% end %>
+
+          <% book.comments.each do |comment| %>
+          <li class="media">
+            <div class="media-body">
+              <h6 class="media-heading">
+                <%= link_to comment.user.username %>
+                <small>
+                  <%= time_ago_in_words(comment.created_at) %> ago
+                </small>
+              </h6>
+              <%= comment.body %>
+            </div>
+          </li>
+          <% end %>
+
+          <li class="media">
+            <div class="media-body">
+              <form action="/create_comment" method="post">
+                <!-- Hidden input for authenticity token to protect from forgery -->
+                <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+                <input type="hidden" name="book_id" value="<%= book.id %>">
+
+                <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+                <!-- Label and input for body -->
+                <div class="form-group">
+                  <label for="body" class="sr-only">
+                    Body
+                  </label>
+
+                  <input type="text" id="body" name="body" placeholder="Add a comment..." class="form-control"></textarea>
+                </div>
+              </form>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+

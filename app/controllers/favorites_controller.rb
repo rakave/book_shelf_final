@@ -17,7 +17,7 @@ class FavoritesController < ApplicationController
     @favorite.book_id = params[:book_id]
 
     if @favorite.save
-      redirect_to "/favorites", :notice => "Favorite created successfully."
+      redirect_to :back, :notice => "Favorite created successfully."
     else
       render 'new'
     end
@@ -34,7 +34,7 @@ class FavoritesController < ApplicationController
     @favorite.book_id = params[:book_id]
 
     if @favorite.save
-      redirect_to "/favorites", :notice => "Favorite updated successfully."
+      redirect_to :back, :notice => "Favorite updated successfully."
     else
       render 'edit'
     end
@@ -45,6 +45,6 @@ class FavoritesController < ApplicationController
 
     @favorite.destroy
 
-    redirect_to "/favorites", :notice => "Favorite deleted."
+    redirect_to :back, :notice => "Favorite deleted."
   end
 end

@@ -10,5 +10,5 @@ class Book < ActiveRecord::Base
   belongs_to :user , :class_name => "User", :foreign_key => "user_id"
   belongs_to :author , :class_name => "Author", :foreign_key => "author_id"
   has_many :genres, :through => :classifications
-
+  has_many :readers, :through => :favorites, :source => :user
 end
