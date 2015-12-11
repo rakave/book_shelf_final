@@ -8,18 +8,92 @@
       <dt>Title</dt>
       <dd><%= @genre.title %></dd>
 
-    </dl>
+      <dt>Books</dt>
+      <dd>
+        <ul class = "list-group">
+         <% @genre.books.each do |book| %>
+         <li class = "list-group-item">
+           <a href="/books/<%= book.id %>">
+             <%= book.title =%>
+           </a>
+         </li>
+         <% end %>
+       </ul>
 
-    <div class="btn-group btn-group-justified">
-      <a href="/genres" class="btn btn-primary">
-        Back
-      </a>
-      <a href="/genres/<%= @genre.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_genre/<%= @genre.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
-    </div>
+       <li class = "list-group-item">
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          Add a new Book
+        </button>
+        <div class="collapse" id="collapseExample">
+          <div class="well">
+            <form action="/create_book" method="post">
+              <!-- Hidden input for authenticity token to protect from forgery -->
+              <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+              <!-- Label and input for title -->
+              <div class="form-group">
+                <label for="title" class="control-label">
+                  Title
+                </label>
+
+                <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="<%= @book.title %>">
+              </div>
+
+              <!-- Label and input for image -->
+              <div class="form-group">
+                <label for="image" class="control-label">
+                  Image
+                </label>
+
+                <input type="text" id="image" name="image" placeholder="Image" class="form-control" value="<%= @book.image %>">
+              </div>
+
+              <!-- Label and input for author_id -->
+              <div class="form-group">
+                <label for="author_id" class="control-label">
+                  Author (if Author's name is not present, please add a new Author <a href="/authors/new">here</a>)
+                </label>
+                <%= select_tag(:author_id, options_from_collection_for_select(Author.order(name: :asc), :id, :name, @book.author_id), :class => "form-control") =%>
+
+              </div>
+
+              <!-- Label and input for user_id -->
+              <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
+
+
+              <!-- Label and input for blurb -->
+              <div class="form-group">
+                <label for="blurb" class="control-label">
+                  Blurb
+                </label>
+
+                <textarea type="text" id="blurb" name="blurb" placeholder="Blurb" class="form-control" value="<%= @book.blurb %>"></textarea>
+              </div>
+
+
+              <input type="hidden" id="genre_id" name="genre_id" placeholder="genre_id" class="form-control" value="<%= @genre.id %>">
+
+
+              <button class="btn btn-success">
+                Create Book
+              </button>
+            </form>
+          </div>
+        </div>
+      </li>
+    </dd>
+  </dl>
+
+  <div class="btn-group btn-group-justified">
+    <a href="/genres" class="btn btn-primary">
+      Back
+    </a>
+    <a href="/genres/<%= @genre.id %>/edit" class="btn btn-warning">
+      Edit
+    </a>
+    <a href="/delete_genre/<%= @genre.id %>" class="btn btn-danger" rel="nofollow">
+      Delete
+    </a>
   </div>
+</div>
 </div>

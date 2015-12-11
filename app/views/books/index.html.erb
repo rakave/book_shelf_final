@@ -18,16 +18,16 @@
       </tr>
 
       <% @books.each do |book| %>
-      <tr>
-        <td><a href="/books/<%= book.id %>"><%= book.title %></a></td>
+      <tr >
+        <td><a href="/books/<%= book.id %>" style="text-decoration:none"><%= book.title %></a></td>
         <td><a href="/books/<%= book.id %>"><img src = <%= book.image %> width ="100"></a></td>
-        <td><a href="/authors/<%= book.author.id %>"><%= book.author.name %></a></td>
-        <td><%= truncate(book.blurb, length: 250, omission: '.......'){link_to "(continue)", "/books/#{book.id}"} %></td>
+        <td><a href="/authors/<%= book.author.id %>" style="text-decoration:none"><%= book.author.name %></a></td>
+        <td ><%= truncate(book.blurb, length: 250, omission: '.......'){link_to "(continue)", "/books/#{book.id}"}  %></td>
         <td>
           <% book.genres.each do |bgenre| %>
           <ul class = "list-group">
             <li class = "list-group-item">
-              <a href="/genres/<%= bgenre.id %>"><%= bgenre.title %></a>
+              <a href="/genres/<%= bgenre.id %>" style="text-decoration:none"><%= bgenre.title %></a>
             </li>
           </ul>
           <% end %>

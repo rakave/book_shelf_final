@@ -2,9 +2,7 @@ class Book < ActiveRecord::Base
 
   validates :author_id, :presence => true
   validates :user_id, :presence => true
-  validates :title, :presence => true
-
-
+  validates :title, :presence => true, :uniqueness => { :scope => :author }
 
   has_many :classifications , :class_name => "Classification", :foreign_key => "book_id"
   has_many :comments , :class_name => "Comment", :foreign_key => "book_id"

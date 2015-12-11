@@ -5,6 +5,7 @@ class AuthorsController < ApplicationController
 
   def show
     @author = Author.find(params[:id])
+    @book = Book.new
   end
 
   def new

@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-<h3>Edit <%= @book.title %></h3>
+  <h3>Edit <%= @book.title %></h3>
 </div>
 
 <div class="row">
@@ -44,13 +44,8 @@
 
       </div>
       <!-- Label and input for user_id -->
-      <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
-        </label>
+      <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @book.user_id %>">
 
-        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @book.user_id %>">
-      </div>
 
       <!-- Label and input for blurb -->
       <div class="form-group">
@@ -65,7 +60,7 @@
       <!-- Select Tag for Genre ID -->
       <div class="form-group">
         <label for="image" class="control-label">
-          Genre (hold "ctrl" to select multiple)
+          Genre (hold "ctrl" to select multiple) (if desired Genre is not present, please add a new Genre <a href="/genres/new" method="post">here</a>))
         </label>
         <%= select_tag(:genre_id, options_from_collection_for_select(Genre.order(title: :asc), :id, :title, @book.genres.ids), :class => "form-control", :multiple => true, :size =>10) =%>
       </div>

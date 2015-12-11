@@ -30,15 +30,18 @@
       </dl>
 
       <div class="btn-group btn-group-justified">
-        <a href="/books" class="btn btn-primary">
+      <a href="/books" class="btn btn-primary">
           Back
         </a>
+
+        <% if current_user.id==@book.user_id %>
         <a href="/books/<%= @book.id %>/edit" class="btn btn-warning">
           Edit
         </a>
         <a href="/delete_book/<%= @book.id %>" class="btn btn-danger" rel="nofollow">
           Delete
         </a>
+        <% end %>
       </div>
     </div>
   </div>
