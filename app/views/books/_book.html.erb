@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-10 col-md-offset-1">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">
@@ -25,12 +25,11 @@
           <% favorite = Favorite.find_by(:book_id => book.id, :user_id => current_user.id) %>
           <% if favorite.present? %>
           <a href="/delete_favorite/<%= favorite.id %>" class="btn btn-link">
-            <i class="fa fa-heart"></i>
+            <i class="fa fa-thumbs-up"></i>
           </a>
           <% if book.readers.any? %>
           <%= book.readers.pluck(:username).to_sentence %>
-          <%= book.readers.many? ? "like" : "likes" %>
-          this
+          <%= book.readers.many? ? "have added this book to their favorites" : "has added this book to his/her favorites" %>
           <% end %>
           <% else %>
           <form action="/create_favorite" method="post">
@@ -42,13 +41,14 @@
             <input type="hidden" name="user_id" value="<%= current_user.id %>">
 
             <button class="btn btn-link">
-              <i class="fa fa-heart-o"></i>
+              <i class="fa fa-thumbs-o-up"></i>
             </button>
 
             <% if book.readers.any? %>
             <%= book.readers.pluck(:username).to_sentence %>
-            <%= book.readers.many? ? "like" : "likes" %>
-            this
+            <%= book.readers.many? ? "have added this book to their favorites" : "has added this book to his/her favorites" %>
+            <% else %>
+            <small class="text-muted">be the first to favorite this</small>
             <% end %>
           </form>
           <% end %>
@@ -71,7 +71,7 @@
           <li class="media">
             <div class="media-body">
               <h6 class="media-heading">
-                <%= link_to comment.user.username %>
+                <%= link_to comment.user.username.capitalize %>
                 <small>
                   <%= time_ago_in_words(comment.created_at) %> ago
                 </small>

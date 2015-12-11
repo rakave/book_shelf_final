@@ -1,4 +1,9 @@
 class BooksController < ApplicationController
+
+  def my_favorites
+    @books = current_user.favorite_books
+  end
+
   def index
     @books = Book.all
   end
