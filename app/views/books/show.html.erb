@@ -5,37 +5,40 @@
 <div class="row">
   <div class="col-md-12">
     <dl class="dl-horizontal">
-      <dt>Author</dt>
-      <dd><%= @book.author.name %></dd>
-
-      <dt>Blurb</dt>
-      <dd><%= @book.blurb %></dd>
-
       <dt>Title</dt>
       <dd><%= @book.title %></dd>
 
       <dt>Image</dt>
       <dd><img src="<%= @book.image %>" width = "150"></dd>
 
+      <dt>Author</dt>
+      <dd><%= @book.author.name %></dd>
+
+      <dt>Blurb</dt>
+      <dd><%= @book.blurb %></dd>
+
+      <br />
       <dt>Genre</dt>
       <dd><% @book.genres.each do |bgenre| %>
-          <ul>
-            <li><a href="/genres/<%= bgenre.id %>"><%= bgenre.title %></a></li>
-          </ul>
-          <% end %></dd>
+        <ul class = "list-group">
+          <li class = "list-group-item">
+            <a href="/genres/<%= bgenre.id %>"><%= bgenre.title %></a>
+          </li>
+        </ul>
+        <% end %></dd>
 
-    </dl>
+      </dl>
 
-    <div class="btn-group btn-group-justified">
-      <a href="/books" class="btn btn-primary">
-        Back
-      </a>
-      <a href="/books/<%= @book.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_book/<%= @book.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
+      <div class="btn-group btn-group-justified">
+        <a href="/books" class="btn btn-primary">
+          Back
+        </a>
+        <a href="/books/<%= @book.id %>/edit" class="btn btn-warning">
+          Edit
+        </a>
+        <a href="/delete_book/<%= @book.id %>" class="btn btn-danger" rel="nofollow">
+          Delete
+        </a>
+      </div>
     </div>
   </div>
-</div>

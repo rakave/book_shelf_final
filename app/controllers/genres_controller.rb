@@ -13,12 +13,12 @@ class GenresController < ApplicationController
 
   def create
     @genre = Genre.new
-    @genre.title = params[:title]
+    @genre.title = params[:title].capitalize
 
     if @genre.save
-      redirect_to "/genres", :notice => "Genre created successfully."
+      redirect_to :back, :notice => "Genre created successfully."
     else
-      render :back
+      render 'new'
     end
   end
 

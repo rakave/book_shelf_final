@@ -20,13 +20,15 @@ class BooksController < ApplicationController
     @book.image = params[:image]
     @book.save
 
-    @genreids = params[:genre_id].map { |x| x.to_i }
+    unless params[:genre_id].blank?
+      @genreids = params[:genre_id].map { |x| x.to_i }
 
-    @genreids.each do |gid|
-      @classification = Classification.new
-      @classification.book_id = @book.id
-      @classification.genre_id = gid
-      @classification.save
+      @genreids.each do |gid|
+        @classification = Classification.new
+        @classification.book_id = @book.id
+        @classification.genre_id = gid
+        @classification.save
+      end
     end
 
     if @book.save && @classification.save

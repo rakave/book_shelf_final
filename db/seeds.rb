@@ -1,4 +1,16 @@
- genre_list = [
+usernames = ["angela", "bobby", "caroline", "david", "elena"]
+
+usernames.each do |username|
+  user = User.create
+  user.username = username
+  user.email = "#{username}@example.com"
+  user.password = "12341234"
+  user.save
+end
+
+puts "There are now #{User.count} users in the database."
+
+genre_list = [
   {:title => "Drama"},
   {:title => "Classic" },
   {:title => "Comic/Graphic Novel" },

@@ -13,10 +13,10 @@ class AuthorsController < ApplicationController
 
   def create
     @author = Author.new
-    @author.name = params[:name]
+    @author.name = params[:name].capitalize
 
     if @author.save
-      redirect_to "/authors", :notice => "Author created successfully."
+      redirect_to :back, :notice => "Author created successfully."
     else
       render 'new'
     end

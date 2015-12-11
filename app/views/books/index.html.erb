@@ -21,12 +21,14 @@
       <tr>
         <td><a href="/books/<%= book.id %>"><%= book.title %></a></td>
         <td><a href="/books/<%= book.id %>"><img src = <%= book.image %> width ="100"></a></td>
-        <td><%= book.author.name %></td>
-        <td><%= book.blurb %></td>
+        <td><a href="/authors/<%= book.author.id %>"><%= book.author.name %></a></td>
+        <td><%= truncate(book.blurb, length: 250, omission: '.......'){link_to "(continue)", "/books/#{book.id}"} %></td>
         <td>
           <% book.genres.each do |bgenre| %>
-          <ul>
-            <li><a href="/genres/<%= bgenre.id %>"><%= bgenre.title %></a></li>
+          <ul class = "list-group">
+            <li class = "list-group-item">
+              <a href="/genres/<%= bgenre.id %>"><%= bgenre.title %></a>
+            </li>
           </ul>
           <% end %>
         </td>

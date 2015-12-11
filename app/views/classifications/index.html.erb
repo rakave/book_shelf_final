@@ -16,8 +16,8 @@
 
       <% @classifications.each do |classification| %>
       <tr>
-        <td><%= classification.genre_id %></td>
-        <td><%= classification.book_id %></td>
+        <td><%= classification.genre.title %></td>
+        <td><%= classification.book.title %></td>
         <td>
           <a href="/classifications/<%= classification.id %>" class="btn btn-primary">Show</a>
           <a href="/classifications/<%= classification.id %>/edit" class="btn btn-warning">Edit</a>

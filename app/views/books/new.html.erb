@@ -14,7 +14,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <form action="/create_book" method="post">
+    <form id = "form-one" action="/create_book" method="post">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
@@ -39,7 +39,7 @@
       <!-- Label and input for author_id -->
       <div class="form-group">
         <label for="author_id" class="control-label">
-          Author
+          Author (if Author's name is not present, please scroll down to add)
         </label>
         <%= select_tag(:author_id, options_from_collection_for_select(Author.order(name: :asc), :id, :name, @book.author_id), :class => "form-control") =%>
 
@@ -60,20 +60,17 @@
           Blurb
         </label>
 
-        <input type="text" id="blurb" name="blurb" placeholder="Blurb" class="form-control" value="<%= @book.blurb %>">
+        <textarea type="text" id="blurb" name="blurb" placeholder="Blurb" class="form-control" value="<%= @book.blurb %>"></textarea>
       </div>
-
 
       <!-- Select Tag for Genre ID -->
       <div class="form-group">
         <label for="image" class="control-label">
-          Genre (hold "ctrl" to select multiple)
+          Genre (hold "ctrl" to select multiple) (if desired Genre is not present, please scroll down to add)
         </label>
         <%= select_tag(:genre_id, options_from_collection_for_select(Genre.order(title: :asc), :id, :title, params[:genre_id]), :class => "form-control", :multiple => true, :size =>10) =%>
       </div>
-      <a href="/genres/new">or add a new genre</a>
-      <br>
-      <br>
+
       <button class="btn btn-success">
         Create Book
       </button>
@@ -82,3 +79,81 @@
     </form>
   </div>
 </div>
+<br />
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  Add a New Author
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Please enter a New Author</h4>
+      </div>
+      <div class="modal-body">
+
+       <!-- form for new author -->
+       <form id = "form_three" action="/create_author" method="post">
+        <!-- Hidden input for authenticity token to protect from forgery -->
+        <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+        <!-- Label and input for name -->
+        <div class="form-group">
+          <label for="name" class="control-label">
+            Author Name
+          </label>
+
+          <input type="text" id="name" name="name" placeholder="Author Name" class="form-control">
+        </div>
+
+        <button class="btn btn-success">
+          Create Author
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- Button trigger modal 2-->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">
+  Add a New Genre
+</button>
+
+<!-- Modal 2-->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Please enter a New Genre</h4>
+      </div>
+      <div class="modal-body">
+        <!-- form for new genre -->
+        <form id = "form_two" action="/create_genre" method="post">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+          <!-- Label and input for title -->
+          <div class="form-group">
+            <label for="title" class="control-label">
+              Genre Type
+            </label>
+
+            <input type="text" id="title" name="title" placeholder="Genre Type" class="form-control" >
+          </div>
+
+          <button class="btn btn-success">
+            Create Genre
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
