@@ -58,7 +58,7 @@ class BooksController < ApplicationController
     @book.image = params[:image]
 
     if @book.save
-      redirect_to "/books", :notice => "Book updated successfully."
+      redirect_to :back, :notice => "Book updated successfully."
     else
       render 'edit'
     end
@@ -69,7 +69,7 @@ class BooksController < ApplicationController
 
     @book.destroy
 
-    redirect_to "/books", :notice => "Book deleted."
+    redirect_to :back, :notice => "Book deleted."
   end
 end
 
