@@ -8,11 +8,11 @@
             written by
           </small>
           <a href = "/authors/<%= book.author.id %>"><%= book.author.name %></a>.
-                      <b>Genres :
-          <% book.genres.each do |bgenre| %>
-          <a href="/genres/<%= bgenre.id %>" style="text-decoration:none"><%= bgenre.title %>,</a>
-          <% end %>
-</b>
+          <b>Genres :
+            <% book.genres.each do |bgenre| %>
+            <a href="/genres/<%= bgenre.id %>" style="text-decoration:none"><%= bgenre.title %>,</a>
+            <% end %>
+          </b>
         </h3>
       </div>
 
@@ -75,6 +75,9 @@
                 <small>
                   <%= time_ago_in_words(comment.created_at) %> ago
                 </small>
+                <% if current_user.id==comment.user_id %>
+                <a href="/delete_comment/<%= comment.id %>"><i class="fa fa-trash"></i></a>
+                <% end %>
               </h6>
               <%= comment.body %>
             </div>
