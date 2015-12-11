@@ -21,6 +21,7 @@ class BooksController < ApplicationController
     @book.save
 
     unless params[:genre_id].blank?
+
       @genreids = params[:genre_id].map { |x| x.to_i }
 
       @genreids.each do |gid|
