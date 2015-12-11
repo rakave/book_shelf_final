@@ -1,12 +1,10 @@
 <div class="page-header">
-  <h3>Genre #<%= @genre.id %></h3>
+  <h3><%= @genre.title %></h3>
 </div>
 
 <div class="row">
   <div class="col-md-12">
     <dl class="dl-horizontal">
-      <dt>Title</dt>
-      <dd><%= @genre.title %></dd>
 
       <dt>Books</dt>
       <dd>
@@ -71,7 +69,7 @@
               </div>
 
 
-              <input type="hidden" id="genre_id" name="genre_id" placeholder="genre_id" class="form-control" value="<%= @genre.id %>">
+              <input type="hidden" id="genre_id" name="genre_id" placeholder="genre_id" class="form-control" value="<%= @genre.id =%>">
 
 
               <button class="btn btn-success">
