@@ -34,7 +34,7 @@
                   Title
                 </label>
 
-                <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="<%= @book.title %>">
+                <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="<%= @book.title %>" required>
               </div>
 
               <!-- Label and input for image -->
@@ -65,32 +65,32 @@
                   Blurb
                 </label>
 
-                <textarea type="text" id="blurb" name="blurb" placeholder="Blurb" class="form-control" value="<%= @book.blurb %>"></textarea>
+                <textarea type="text" id="blurb" name="blurb" placeholder="Blurb" class="form-control" value="<%= @book.blurb %>" required></textarea>
               </div>
 
+              <!-- Select Tag for Genre ID -->
+              <%= select_tag(:genre_id, options_from_collection_for_select(Genre.order(title: :asc), :id, :title, @genre.id), :class => "form-control", :multiple => true, :size=> 1, :required => true, :class => "hidden") =%>
 
-              <input type="hidden" id="genre_id" name="genre_id" placeholder="genre_id" class="form-control" value="<%= @genre.id =%>">
-
-              <button class="btn btn-success">
-                Create Book
-              </button>
-            </form>
-          </div>
+            <button class="btn btn-success">
+              Create Book
+            </button>
+          </form>
         </div>
-      </li>
-    </dd>
-  </dl>
+      </div>
+    </li>
+  </dd>
+</dl>
 
-  <div class="btn-group btn-group-justified">
-    <a href="/genres" class="btn btn-primary">
-      Back
-    </a>
-    <a href="/genres/<%= @genre.id %>/edit" class="btn btn-warning">
-      Edit
-    </a>
-    <a href="/delete_genre/<%= @genre.id %>" class="btn btn-danger" rel="nofollow">
-      Delete
-    </a>
-  </div>
+<div class="btn-group btn-group-justified">
+  <a href="/genres" class="btn btn-primary">
+    Back
+  </a>
+  <a href="/genres/<%= @genre.id %>/edit" class="btn btn-warning">
+    Edit
+  </a>
+  <a href="/delete_genre/<%= @genre.id %>" class="btn btn-danger" rel="nofollow">
+    Delete
+  </a>
+</div>
 </div>
 </div>

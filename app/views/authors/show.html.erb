@@ -34,7 +34,7 @@
                   Title
                 </label>
 
-                <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="<%= @book.title %>">
+                <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="<%= @book.title %>" required>
               </div>
 
               <!-- Label and input for image -->
@@ -61,7 +61,7 @@
                   Blurb
                 </label>
 
-                <textarea type="text" id="blurb" name="blurb" placeholder="Blurb" class="form-control" value="<%= @book.blurb %>"></textarea>
+                <textarea type="text" id="blurb" name="blurb" placeholder="Blurb" class="form-control" value="<%= @book.blurb %>" required></textarea>
               </div>
 
               <!-- Select Tag for Genre ID -->
@@ -69,7 +69,7 @@
                 <label for="image" class="control-label">
                   Genre (hold "ctrl" to select multiple) (if desired Genre is not present, please add a new Genre <a href="/genres/new" method="post">here</a>)
                 </label>
-                <%= select_tag(:genre_id, options_from_collection_for_select(Genre.order(title: :asc), :id, :title, params[:genre_id]), :class => "form-control", :multiple => true, :size =>10) =%>
+                <%= select_tag(:genre_id, options_from_collection_for_select(Genre.order(title: :asc), :id, :title, params[:genre_id]), :class => "form-control", :multiple => true, :size =>10, :required => true) =%>
               </div>
 
               <button class="btn btn-success">

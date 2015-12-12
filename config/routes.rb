@@ -61,6 +61,7 @@ Rails.application.routes.draw do
   # CREATE
   get "/books/new", :controller => "books", :action => "new"
   post "/create_book", :controller => "books", :action => "create"
+  get "/create_book", :controller => "books", :action => "index"
 
   # READ
   get "/books", :controller => "books", :action => "index"

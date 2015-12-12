@@ -37,7 +37,7 @@ class BooksController < ApplicationController
       end
     end
 
-    if @book.save && @classification.save
+    if @classification.save
       redirect_to :back, :notice => "Book created successfully."
     else
       render 'new'
