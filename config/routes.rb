@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   # CREATE
   get "/genres/new", :controller => "genres", :action => "new"
   post "/create_genre", :controller => "genres", :action => "create"
-
+  get "/create_genre", :controller => "genres", :action => "index"
   # READ
   get "/genres", :controller => "genres", :action => "index"
   get "/genres/:id", :controller => "genres", :action => "show"
@@ -44,7 +44,7 @@ Rails.application.routes.draw do
   # CREATE
   get "/authors/new", :controller => "authors", :action => "new"
   post "/create_author", :controller => "authors", :action => "create"
-
+  get "/create_author", :controller => "authors", :action => "index"
   # READ
   get "/authors", :controller => "authors", :action => "index"
   get "/authors/:id", :controller => "authors", :action => "show"
