@@ -6,7 +6,7 @@
 
 ####Instructions :
 
-rake db:migrate
+rake db:migrate <br/>
 rake db:seed
 
 ####ERD :
