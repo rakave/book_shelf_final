@@ -57,6 +57,18 @@ class BooksController < ApplicationController
     @book.title = params[:title]
     @book.image = params[:image]
 
+    unless params[:genre_id].blank?
+
+      @genreids = params[:genre_id].map { |x| x.to_i }
+
+      @genreids.each do |gid|
+        @classification = Classification.new
+        @classification.book_id = @book.id
+        @classification.genre_id = gid
+        @classification.save
+      end
+    end
+
     if @book.save
       redirect_to "/books/#{@book.id}", :notice => "Book updated successfully."
     else
