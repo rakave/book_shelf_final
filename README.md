@@ -4,12 +4,12 @@
 
 ### My Book Shelf
 
-Instructions
+1.Instructions
 
  ```shell
     rake db:migrate
     rake db:seed
-    ```
 
+1. ERD
 
 <img src ="erd.jpg">
